@@ -3,9 +3,9 @@ const app = express()
 const PORT = 3000
 // fs.writeFile
 const path = require('path')
-// const data = require('./Develop/db/db.json')
+const data = require('./data/db.json')
 
-// app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, 'public')))
 
 //index.html
 app.get('/', (req, res) => {
@@ -17,37 +17,15 @@ app.get('/notes', (req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'notes.html'))
 })
 
-//database
+//api routes 
 app.get('/api/notes', (req, res) => {
-    //     var arrNotes = [
-    //     {
-    //         "title":"Test Title",
-    //         "text":"Test text"
-    //     }
-    //  ]
-        // TODO: Possible way - save arrNotes as the contents from db/db.json
-
-    res.sendFile(path.join(__dirname, "db/db.json"))
+    res.json(data)
 })
 
+app.post('/api/notes', (req, res) => {
 
+})
 
-//     fs.readFile(path.join(__dirname, "db/db.json"), {encoding:"utf-8"}, (err, data)=>{
-//         if(err) {
-//             throw err;
-//             // console.log(err);
-//         }
-
-//         console.log(data)
-//         console.log(typeof(data))
-
-//         // Self mutate the data into an array
-//         data = JSON.parse(data);
-
-//         res.json(data)
-//     })
-
-// })
 
 // //app.post ...
 // // once data is an array
